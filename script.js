@@ -1,5 +1,12 @@
 'use strict';
-const numberOfFilms = prompt("Сколько фильмов вы уже посмотрели?", "");
+let numberOfFilms;
+function start () {
+    numberOfFilms = prompt("Сколько фильмов вы уже посмотрели?", "");
+    while (numberOfFilms == '' || numberOfFilms == null || isNaN(numberOfFilms)) {
+        numberOfFilms = prompt("Сколько фильмов вы уже посмотрели?", "");
+    }
+start ();
+}
 const personalMovieDB = {
     count : numberOfFilms ,
     movies : {},
@@ -7,9 +14,16 @@ const personalMovieDB = {
     genres : [],
     privat : false
 };
+function showMyDB (a) {
+    if (a.privat === false) {
+        console.log(a);
+    }
+};
+showMyDB(personalMovieDB);
 personalMovieDB.movies[lastFilm] = ratingOfFilms;
 
-for (let i = 0 ; i < 2; i++)
+function rememberMyFilms() {
+    for (let i = 0 ; i < 2; i++)
 {
     const lastFilm = prompt("Один из последних просмотренных фильмов?", "");
           ratingOfFilms = prompt("На сколько оцените его?", "");
@@ -23,10 +37,12 @@ for (let i = 0 ; i < 2; i++)
         console.log(error);
         i--;
     }
-
 }
+}
+rememberMyFilms();
 
-if (personalMovieDB < 10)
+function detectPersonalLevel(){
+    if (personalMovieDB < 10)
 {
     console.log('Просмотрено довольно мало фильмов');
 }
@@ -39,5 +55,8 @@ else if (personalMovieDB >= 30)
     console.log('Вы киноман');
 }
 else {console.log("Произошла ошибка")}
+}
+detectPersonalLevel();
 console.log(personalMovieDB);
+
 
